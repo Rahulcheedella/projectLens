@@ -1,4 +1,6 @@
 import os
+# Ensure Playwright finds browser binaries in python package on cloud hosts (Render/Docker)
+os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", "0")
 import logging
 from pathlib import Path
 from dotenv import load_dotenv

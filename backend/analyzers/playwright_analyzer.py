@@ -1,3 +1,4 @@
+import os
 import base64
 import time
 import logging
@@ -30,8 +31,11 @@ class PlaywrightAnalyzer:
             try:
                 browser = await p.chromium.launch(headless=True, args=args)
             except Exception as launch_err:
-                logger.info(f"Standard chromium launch failed ({launch_err}), attempting msedge channel...")
-                browser = await p.chromium.launch(channel="msedge", headless=True, args=args)
+                if os.name == "nt":
+                    logger.info(f"Standard chromium launch failed ({launch_err}), attempting msedge channel on Windows...")
+                    browser = await p.chromium.launch(channel="msedge", headless=True, args=args)
+                else:
+                    raise launch_err
 
             # --- DESKTOP VIEWPORT RUN ---
             context = await browser.new_context(
