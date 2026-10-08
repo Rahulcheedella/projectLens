@@ -1,0 +1,23 @@
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Temporary screenshots and logs
+screenshots/
+temp/
+*.log
